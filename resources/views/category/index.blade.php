@@ -18,109 +18,32 @@
 </div>
     <!-- /.content-header -->
 <section class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        <div class="card">
-          <div class="card-header">
-            <a href="{{ route('category.create') }}" class="btn btn-primary">Добавить</a>
-            </div>
-                <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Наименование</th>
-                      <th>Parent_id</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @foreach($categories as $category)
-                    <tr>
-                      <td>{{ $category->id }}</td>
-                      <td><a href="{{ route('category.show', $category->id) }}">{{ $category->name }}</a></td>
-                      <td>{{ $category->parent_id }}</td>
-                    </tr>
-                    @endforeach
-                  </tbody>
-                </table>
-              </div>
-          </div>
-        </div>
-    </div>
-  </div>
+
 
 <div class="card">
-  <div class="card-header">
-            <a href="{{ route('category.create') }}" class="btn btn-primary">Добавить</a>
-            </div>
+    <div class="card-header">
+     <a href="{{ route('category.create') }}" class="btn btn-primary">Добавить</a>
+    </div>
+    <div class="card-body">
+        <table id="categoryTable" class="table table-bordered table-hover">
+            <tbody>
+                @foreach($categories as $category)
+                    @include('category.partials.category_row', ['category' => $category, 'level' => 0])
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-<div class="card-body p-0">
-  <table class="table table-hover">
-    <tbody>
-    <tr data-widget="expandable-table" aria-expanded="false">
-    <td>
-    <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-    219
-    </td>
-    </tr>
-    <tr class="expandable-body">
-    <td>
-    <div class="p-0">
-    <table class="table table-hover">
-    <tbody>
-    <tr data-widget="expandable-table" aria-expanded="false">
-    <td>
-    <i class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-    219-1
-    </td>
-    </tr>
-    <tr class="expandable-body d-none">
-    <td>
-    <div class="p-0" style="display: none;">
-    <table class="table table-hover">
-    <tbody>
-    <tr>
-    <td>219-1-1</td>
-    </tr>
-    <tr>
-    <td>219-1-2</td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </td>
-    </tr>
-    <tr data-widget="expandable-table" aria-expanded="false">
-    <td>
-    219-2
-    </td>
-    </tr>
-    <tr class="expandable-body d-none">
-    <td>
-    <div class="p-0" style="display: none;">
-    <table class="table table-hover">
-    <tbody>
-    <tr>
-    <td>219-2-1</td>
-    </tr>
-    <tr>
-    <td>219-2-2</td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-    </td>
-    </tr>
-    </tbody>
-  </table>
-  </div>
-</div> 
+<script>
+    $(document).ready(function() {
+        $('.expandable').click(function() {
+            $(this).siblings('.child-row').toggle();
+        });
+    });
+</script>
+
+
 
 </section>
 @endsection

@@ -10,7 +10,13 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::all();
+        $categories = Category::with('children')->whereNull('parent_id')->get();
         return view('category.index', compact('categories'));
+    }
+
+    public function show($id)
+    {
+    $category = Category::with('children', 'products')->findOrFail($id);
+    return view('categories.show', compact('category'));
     }
 }

@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', \App\Http\Controllers\Main\IndexController::class);
 
+Route::group(['prefix' => 'reports'], function(){
+    Route::get('/', \App\Http\Controllers\Report\IndexController::class)->name('report.index');
+});
+
+
 
 Route::group(['prefix' => 'categories'], function(){
     Route::get('/', \App\Http\Controllers\Category\IndexController::class)->name('category.index');
@@ -33,6 +38,26 @@ Route::group(['prefix' => 'products'], function(){
     Route::get('/{product}', App\Http\Controllers\Product\ShowController::class)->name('product.show');
     Route::patch('/{product}', App\Http\Controllers\Product\UpdateController::class)->name('product.update');
     Route::delete('/{product}', App\Http\Controllers\Product\DeleteController::class)->name('product.delete');
+});
+
+Route::group(['prefix' => 'users'], function(){
+    Route::get('/', \App\Http\Controllers\User\IndexController::class)->name('user.index');
+    Route::get('/create', App\Http\Controllers\User\CreateController::class)->name('user.create');
+    Route::post('/', App\Http\Controllers\User\StoreController::class)->name('user.store');
+    Route::get('/{user}/edit', App\Http\Controllers\User\EditController::class)->name('user.edit');
+    Route::get('/{user}', App\Http\Controllers\User\ShowController::class)->name('user.show');
+    Route::patch('/{user}', App\Http\Controllers\User\UpdateController::class)->name('user.update');
+    Route::delete('/{user}', App\Http\Controllers\User\DeleteController::class)->name('user.delete');
+});
+
+Route::group(['prefix' => 'orders'], function(){
+    Route::get('/', \App\Http\Controllers\Order\IndexController::class)->name('order.index');
+    Route::get('/create', App\Http\Controllers\Order\CreateController::class)->name('order.create');
+    Route::post('/', App\Http\Controllers\Order\StoreController::class)->name('order.store');
+    Route::get('/{order}/edit', App\Http\Controllers\Order\EditController::class)->name('order.edit');
+    Route::get('/{order}', App\Http\Controllers\Order\ShowController::class)->name('order.show');
+    Route::patch('/{order}', App\Http\Controllers\Order\UpdateController::class)->name('order.update');
+    Route::delete('/{order}', App\Http\Controllers\Order\DeleteController::class)->name('order.delete');
 });
 
 // Auth::routes();

@@ -42,7 +42,7 @@
     <!-- Brand Logo -->
     <a href={{url('/')}} class="brand-link">
       <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-      <span class="brand-text font-weight-light">Панель администрации</span>
+      <span class="brand-text font-weight-light"><b>Интернет-магазин</b></span>
     </a>
 
     <!-- Sidebar -->
@@ -57,7 +57,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('order.index') }}" class="nav-link">
             <i class="fas fa-wallet"></i>
               <p>
                 Заказы
@@ -66,7 +66,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('report.index') }}" class="nav-link">
             <i class="fas fa-chart-line"></i></i>
               <p>
                 Отчёты
@@ -93,7 +93,7 @@
           </li>
           
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('user.index') }}" class="nav-link">
             <i class="fas fa-user"></i>
               <p>
                 Пользователи
