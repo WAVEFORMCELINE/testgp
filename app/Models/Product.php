@@ -18,7 +18,16 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
     
+    public function getImageUrlAttribute()
+    {
+        if($this->image){
+            return url('storage/' . $this->image);
+        }
+        else{
+            return url('storage/images/noimage.jpg');
+        }
+    }
 }
